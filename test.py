@@ -68,4 +68,4 @@ except Exception as e:
     print(f"=== FAIL ===\n{e}")
 
 if raise_message:
-    raise Exception(raise_message)
+    raise Exception("\n" + raise_message)
