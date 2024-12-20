@@ -51,7 +51,7 @@ try:
                             print(f"module: `{directory}` test case: {count} - FAIL info: {e}")
                         except Exception as test_error:
                             failed += 1
-                            raise_message += f"module: `{directory}` test case: {count} - ERROR info: {test_error}"
+                            raise_message += f"module: `{directory}` test case: {count} - ERROR info: {test_error}\n"
                             print(f"module: `{directory}` test case: {count} - ERROR info: {test_error}")
                     if failed > 0:
                         print(f"=== FAIL ===\n{failed} out of {count} test cases failed.")
@@ -68,5 +68,4 @@ except Exception as e:
     print(f"=== FAIL ===\n{e}")
 
 if raise_message:
-    print(f"=== FAIL ===\n{raise_message}")
     raise Exception(raise_message)
