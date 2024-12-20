@@ -11,6 +11,7 @@ entries = os.listdir(path)
 matching_dirs = [entry for entry in entries if os.path.isdir(os.path.join(path, entry)) and entry.startswith(test_prefix)]
 test_case_file_path = os.path.join(path, test_case_file_name)
 
+raise_message = ""
 try:
     for directory in matching_dirs:
         test_case_file_path = os.path.join(path, directory, test_case_file_name)
@@ -46,9 +47,11 @@ try:
                             print(f"module: `{directory}` test case: {count} - OK runtime: {runtime_ms}ms")
                         except AssertionError as e:
                             failed += 1
+                            raise_message += f"module: `{directory}` test case: {count} - FAIL info: {e}\n"
                             print(f"module: `{directory}` test case: {count} - FAIL info: {e}")
                         except Exception as test_error:
                             failed += 1
+                            raise_message += f"module: `{directory}` test case: {count} - ERROR info: {test_error}"
                             print(f"module: `{directory}` test case: {count} - ERROR info: {test_error}")
                     if failed > 0:
                         print(f"=== FAIL ===\n{failed} out of {count} test cases failed.")
@@ -63,3 +66,7 @@ try:
         print()
 except Exception as e:
     print(f"=== FAIL ===\n{e}")
+
+if raise_message:
+    print(f"=== FAIL ===\n{raise_message}")
+    raise Exception(raise_message)
