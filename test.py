@@ -8,7 +8,10 @@ path = "."
 test_prefix = "module"
 test_case_file_name = "test-case.csv"
 entries = os.listdir(path)
-matching_dirs = [entry for entry in entries if os.path.isdir(os.path.join(path, entry)) and entry.startswith(test_prefix)]
+matching_dirs = sorted(
+    [entry for entry in entries if os.path.isdir(os.path.join(path, entry)) and entry.startswith(test_prefix)],
+    key=lambda entry: entry
+)
 test_case_file_path = os.path.join(path, test_case_file_name)
 
 raise_message = ""
