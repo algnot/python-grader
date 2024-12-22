@@ -1,3 +1,3 @@
 
 def input_func(input):
-    return ""
+    return "hello world"
