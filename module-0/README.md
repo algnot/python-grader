@@ -1,4 +1,4 @@
-### Module 0: ello world
+### Module 0: hello world
 
 ### Requirement
 แก้ logic ฟังก์ชั่น `input_func(input)` ให้รับ input อะไรก็ได้แต่ return string `hello world`
